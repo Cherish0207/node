@@ -1,6 +1,7 @@
-function anonymous() {
+function anonymous(obj) {
   let str = "";
-  str += `<!DOCTYPE html>
+  with (obj) {
+    str += `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -10,18 +11,20 @@ function anonymous() {
   </head>
   <body>
     `;
-  arr.forEach((item) => {
-    str += `
+    arr.forEach((item) => {
+      str += `
 
     <li>`;
-    item;
-    str += `
+      item;
+      str += `
 </li>
     `;
-  });
-  str += `
+    });
+    str += `
 
   </body>
 </html>
 `;
+  }
+  return str;
 }
