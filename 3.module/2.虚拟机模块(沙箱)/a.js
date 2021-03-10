@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+function anonymous() {
+  let str = "";
+  str += `<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -7,8 +9,19 @@
     <title>Document</title>
   </head>
   <body>
-    {%arr.forEach(item=>{%}
-    <li>{%item%}</li>
-    {%})%}
+    `;
+  arr.forEach((item) => {
+    str += `
+
+    <li>`;
+    item;
+    str += `
+</li>
+    `;
+  });
+  str += `
+
   </body>
 </html>
+`;
+}

@@ -6,11 +6,19 @@ const fs = require("fs");
 const renderFile = (filePath, obj, cb) => {
   fs.readFile(filePath, "utf8", (err, html) => {
     if (err) return cb(err, html);
-    html = html.replace(/\{\{([^}]+)\}\}/g, (...args) => {
-      let key = args[1].trim();
-      return obj[key];
+    // html = html.replace(/\{\{([^}]+)\}\}/g, (...args) => {
+    //   let key = args[1].trim();
+    //   return obj[key];
+    // });
+    let head = `let str = '';\r\n `;
+    head += "str+=`";
+    html = html.replace(/\{\%([^%]+)\%\}/g, (...args) => {
+      return "`\r\n" + args[1] + " \r\n str+=`\r\n";
     });
-    cb(null, html);
+    let tail = "`";
+    let fn = new Function(head + html + tail);
+    console.log(fn.toString());
+    // cb(null, html);
   });
 };
 renderFile(
