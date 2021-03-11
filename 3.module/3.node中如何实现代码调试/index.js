@@ -82,6 +82,7 @@ Module._load = function (filepath) {
   // 获取路径后不要立即创建模块,先看一眼能否找到以前加载过的模块
   let cache = Module.cache[filename];
   if (cache) {
+    console.log("cache.exports;", cache.exports);
     return cache.exports;
   }
   let module = new Module(filename); // 进行模块的创建（模块本身有 exports 属性） id, exports 对应的就是当前模块的结果
@@ -96,7 +97,12 @@ function myRequire(filepath) {
 
 // let r = myRequire("./a.json");
 let r = myRequire("./a.js");
-myRequire("./a.js");
-myRequire("./a.js");
-myRequire("./a.js");
-console.log("r:", r);
+// myRequire("./a.js");
+// myRequire("./a.js");
+// myRequire("./a.js");
+// console.log("r:", r);
+setInterval(() => {
+  // 动态引入-->等价于es6的import()语法
+  let r = myRequire("./a.js");
+  console.log(r);//每次fn都在执行，会更新module.exports
+}, 1000);
