@@ -46,5 +46,13 @@ exports = "hello";
 
 ### 其他
 
-- 循环引用的解决方案就是不循环引用,否则只会加载部分内容
-可能是两个模块有公共的方法，那就把公共的抽出
+### 总结
+
+1. require 语法是同步的,fs, readfilesync
+2. 最终 require 语法返回的是 module, exports
+3. 模块的 exports 和 module, exports 引用的是同一个变量
+4. 模块是动态加载每次 require 都会获取最新的导出的结果,可以将 require 写到条件中
+5. 更改 exports 引用不会导致 module, exports 变化
+6. 循环引用,一般不会出现,如果出现只能加载部分数
+   循环引用的解决方案就是不循环引用,否则只会加载部分内容
+   可能是两个模块有公共的方法，那就把公共的抽出
