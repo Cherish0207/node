@@ -75,10 +75,17 @@ Module.prototype.load = function (filename) {
   let extname = path.extname(filename); // 获取文件的后缀/扩展名
   Module._extensition[extname](this); // 根据对应的后缀名进行加载
 };
+Module.cache = {};
 Module._load = function (filepath) {
   let filename = Module._resolveFilename(filepath);
   // 保证每个模块的唯一性,需要通过唯一路径进行查找
+  // 获取路径后不要立即创建模块,先看一眼能否找到以前加载过的模块
+  let cache = Module.cache[filename];
+  if (cache) {
+    return cache.exports;
+  }
   let module = new Module(filename); // 进行模块的创建（模块本身有 exports 属性） id, exports 对应的就是当前模块的结果
+  Module.cache[filename] = module;
   module.load(filename); // 创建后加载
   return module.exports;
 };
@@ -89,4 +96,7 @@ function myRequire(filepath) {
 
 // let r = myRequire("./a.json");
 let r = myRequire("./a.js");
+myRequire("./a.js");
+myRequire("./a.js");
+myRequire("./a.js");
 console.log("r:", r);
