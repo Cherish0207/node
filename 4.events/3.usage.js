@@ -12,9 +12,9 @@ function cry(name) {
 function eat(name) {
   console.log(name + " 吃");
 }
-girl.on("女生失恋", cry);
-girl.on("女生失恋", eat);
-girl.off("女生失恋", cry);
+girl.once("女生失恋", cry);
+girl.once("女生失恋", eat);
+girl.off("女生失恋", cry);// cry 没被移除掉
 console.dir(girl._events);
 girl.emit("女生失恋", "lucas");
 girl.emit("女生失恋", "小美");
