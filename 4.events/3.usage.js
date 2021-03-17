@@ -18,7 +18,9 @@ function eat(name) {
 girl.on("newListener", (type) => {
   console.log("newListener", type);
   if (type === "女生失恋") {
-    girl.emit(type);
+    process.nextTick(() => {
+      girl.emit(type, "viral");
+    });
   }
 });
 girl.on("女生失恋", cry);
