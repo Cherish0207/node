@@ -1,4 +1,4 @@
-const EventEmitter = require("events");
+const EventEmitter = require("./EventEmitter");
 const utils = require("util"); // util.promisify / util.inherits
 function Girl(name) {
   this.name = name;
@@ -25,3 +25,5 @@ girl.on("newListener", (type) => {
 });
 girl.on("女生失恋", cry);
 girl.on("女生失恋", eat);
+// girl.once("女生失恋", cry);
+// girl.once("女生失恋", eat);

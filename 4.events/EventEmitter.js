@@ -5,6 +5,10 @@ EventEmitter.prototype.on = function (eventName, callback) {
   if (!this._events) {
     this._events = {};
   }
+  // newlistener以外的事件，需要触发 newlistener的回调
+  if (eventName !== "newListener") {
+    this.emit("newListener", eventName);
+  }
   (this._events[eventName] || (this._events[eventName] = [])).push(callback);
 };
 EventEmitter.prototype.emit = function (eventName, ...args) {
