@@ -1,10 +1,12 @@
 {
   "name": "node",
   "version": "1.0.0",
-  "description": "",
-  "main": "1.process.platform+process.argv.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "computed": "./5.npm/bin/computed.js"
   },
   "keywords": [],
   "author": "",
@@ -12,5 +14,15 @@
   "dependencies": {
     "commander": "^7.1.0",
     "ejs": "^3.1.6"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cherish0207/node.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Cherish0207/node/issues"
+  },
+  "homepage": "https://github.com/Cherish0207/node#readme",
+  "description": ""
 }
