@@ -14,7 +14,7 @@ function eat(name) {
 }
 girl.once("女生失恋", cry);
 girl.once("女生失恋", eat);
-girl.off("女生失恋", cry);// cry 没被移除掉
+girl.off("女生失恋", cry);
 console.dir(girl._events);
 girl.emit("女生失恋", "lucas");
 girl.emit("女生失恋", "小美");

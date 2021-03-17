@@ -15,7 +15,7 @@ EventEmitter.prototype.emit = function (eventName, ...args) {
 EventEmitter.prototype.off = function (eventName, callback) {
   if (this._events && this._events[eventName]) {
     this._events[eventName] = this._events[eventName].filter(
-      (cb) => cb != callback
+      (cb) => cb != callback && cb.l != callback
     );
   }
 };
@@ -28,6 +28,7 @@ EventEmitter.prototype.once = function (eventName, callback) {
     callback(...args);
     this.off(eventName, once);
   };
+  once.l = callback;
   this.on(eventName, once);
 };
 module.exports = EventEmitter;
