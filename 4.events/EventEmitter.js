@@ -12,5 +12,11 @@ EventEmitter.prototype.emit = function (eventName, ...args) {
     this._events[eventName].forEach((e) => e(...args));
   }
 };
-
+EventEmitter.prototype.off = function (eventName, callback) {
+  if (this._events && this._events[eventName]) {
+    this._events[eventName] = this._events[eventName].filter(
+      (cb) => cb != callback && cb.l != callback
+    );
+  }
+};
 module.exports = EventEmitter;

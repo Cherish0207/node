@@ -14,6 +14,7 @@ function eat(name) {
 }
 girl.on("女生失恋", cry);
 girl.on("女生失恋", eat);
+girl.off("女生失恋", cry);
 console.dir(girl._events);
 girl.emit("女生失恋", "lucas");
 girl.emit("女生失恋", "小美");
