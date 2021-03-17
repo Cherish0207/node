@@ -1,4 +1,4 @@
-const EventEmitter = require("./EventEmitter");
+const EventEmitter = require("events");
 const utils = require("util"); // util.promisify / util.inherits
 function Girl(name) {
   this.name = name;
@@ -12,9 +12,14 @@ function cry(name) {
 function eat(name) {
   console.log(name + " 吃");
 }
-girl.once("女生失恋", cry);
-girl.once("女生失恋", eat);
-girl.off("女生失恋", cry);
-console.dir(girl._events);
-girl.emit("女生失恋", "lucas");
-girl.emit("女生失恋", "小美");
+// newListener--事件的监听器，固定写法
+// 1.放在绑定事件之前绑定
+// 2.第一次触发时，_events对象还是空的
+girl.on("newListener", (type) => {
+  console.log("newListener", type);
+  if (type === "女生失恋") {
+    girl.emit(type);
+  }
+});
+girl.on("女生失恋", cry);
+girl.on("女生失恋", eat);

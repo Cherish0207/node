@@ -21,3 +21,7 @@ on emit off once newlistener
 - 发布和订阅之间，一个负责发布，一个负责订阅，二者没有关联，只是靠一个对象来维持二者的关联
 
 观察者模式和发布订阅的场景区分
+
+## newlistener
+
+> [newlistener](https://nodejs.org/dist/latest-v14.x/docs/api/events.html#events_event_newlistener)
